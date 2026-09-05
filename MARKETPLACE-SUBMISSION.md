@@ -22,7 +22,7 @@ System
 
 ### Tags
 
-bar, system, sync
+Bar, System, Quickshell
 
 ### Suggest a missing tag
 
