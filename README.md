@@ -20,7 +20,7 @@ omarchy bar move io.github.cytracon.catsync --section right
 
 ## Usage
 
-Click **CS** to open or close the panel. Escape closes it. Right-click opens settings. In the panel: **O** settings, **D** start/stop daemon, **S** source.
+Click **CS** to open or close the panel. Escape closes it. Right-click opens settings. In the panel: **O** settings, **S** source.
 
 ## Remove
 
@@ -52,7 +52,6 @@ That writes `~/.local/bin/catsyncd`. OAuth client, token, and sync config stay i
 - No OAuth client, token, sync root, or file paths in this repository
 - Left-click only toggles the panel
 - Right-click runs the fixed path `$HOME/.local/bin/catsync-tray --settings` when that file exists
-- Daemon start/stop uses `systemctl --user` on `catsyncd.service`
 - “Source” opens `https://github.com/cytracon/catsync` via `omarchy-launch-browser`
 
 Omarchy plugins run unsandboxed. Review `BarWidget.qml`, `Panel.qml`, and `Model.js` before enabling.

@@ -77,13 +77,6 @@ Panel {
     root.close()
   }
 
-  function toggleDaemon() {
-    if (!root.installed) return
-    var action = root.daemonActive ? "stop" : "start"
-    Quickshell.execDetached(["systemctl", "--user", action, "catsyncd.service"])
-    Qt.callLater(root.refresh)
-  }
-
   function openSource() {
     Quickshell.execDetached(["omarchy-launch-browser", root.sourceUrl])
     root.close()
@@ -91,7 +84,6 @@ Panel {
 
   function activateCursor() {
     if (actionIndex === 0) launchApp()
-    else if (actionIndex === 1) toggleDaemon()
     else openSource()
   }
 
@@ -125,15 +117,14 @@ Panel {
       anchors.fill: parent
       onMoveRequested: function(dx, dy) {
         root.cursorActive = true
-        if (dy > 0) root.actionIndex = Math.min(2, root.actionIndex + 1)
-        else if (dy < 0) root.actionIndex = Math.max(0, root.actionIndex - 1)
+        if (dy > 0) root.actionIndex = 1
+        else if (dy < 0) root.actionIndex = 0
       }
       onActivateRequested: root.activateCursor()
       onCloseRequested: root.close()
       onTabRequested: function(direction) { root.switchPanel(direction) }
       onTextKey: function(t) {
         if (t === "o" || t === "O") root.launchApp()
-        else if (t === "d" || t === "D") root.toggleDaemon()
         else if (t === "s" || t === "S") root.openSource()
       }
 
@@ -173,18 +164,9 @@ Panel {
 
         ActionRow {
           width: parent.width
-          title: root.daemonActive ? "Stop daemon" : "Start daemon"
-          hint: "systemctl --user, press D"
-          selected: root.cursorActive && root.actionIndex === 1
-          enabled: root.installed
-          onClicked: root.toggleDaemon()
-        }
-
-        ActionRow {
-          width: parent.width
           title: "Source"
           hint: "github.com/cytracon/catsync"
-          selected: root.cursorActive && root.actionIndex === 2
+          selected: root.cursorActive && root.actionIndex === 1
           enabled: true
           onClicked: root.openSource()
         }

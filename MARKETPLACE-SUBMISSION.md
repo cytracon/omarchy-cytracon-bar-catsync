@@ -34,7 +34,7 @@ Plugin ID: `io.github.cytracon.catsync`.
 
 This is an Omarchy Quattro bar-widget (Quickshell) for Catsync 0.5.0 on Omarchy/Arch. It does not ship the GTK tray/daemon and does not run installers. `omarchy plugin add` only clones this repo. Catsync itself is installed separately with `omarchy install catsync` (user-local `~/.local`).
 
-The panel reads `$HOME/.local/bin/catsyncd --status` (no secrets or paths) and can launch `$HOME/.local/bin/catsync-tray --settings`. Daemon start/stop uses `systemctl --user` on `catsyncd.service`. Source opens https://github.com/cytracon/catsync via `omarchy-launch-browser`. No OAuth credentials in this repository. MIT license. `omarchy plugin validate` passed locally.
+The panel reads `$HOME/.local/bin/catsyncd --status` (no secrets or paths) and can launch `$HOME/.local/bin/catsync-tray --settings`. Source opens https://github.com/cytracon/catsync via `omarchy-launch-browser`. No OAuth credentials and no systemd calls in this repository. MIT license. `omarchy plugin validate` passed locally.
 
 Layout matches the official Omarchy plugin template: `BarWidget.qml` + `Panel.qml` + `Model.js`.
 
