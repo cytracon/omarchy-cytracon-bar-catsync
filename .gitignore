@@ -1,0 +1,6 @@
+.DS_Store
+*.qmlc
+*.jsc
+config.json
+client_secret.json
+token.json
