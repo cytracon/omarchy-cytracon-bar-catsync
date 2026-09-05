@@ -30,6 +30,8 @@ drive
 
 ### Maintainer notes
 
+What it is: Catsync keeps a local folder in sync with Google Drive (daemon + tray). This plugin only shows daemon phase/pending counts and opens settings. No OAuth secrets in the plugin.
+
 Plugin ID: `io.github.cytracon.catsync`.
 
 This is an Omarchy Quattro bar-widget (Quickshell) for Catsync 0.5.0 on Omarchy/Arch. It does not ship the GTK tray/daemon and does not run installers. `omarchy plugin add` only clones this repo. Catsync itself is installed separately with `omarchy install catsync` (user-local `~/.local`).

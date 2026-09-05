@@ -1,8 +1,8 @@
 # Catsync — Omarchy plugin
 
-Omarchy Quattro bar widget for **[Catsync](https://github.com/cytracon/catsync)** `0.5.0`.
+**What it is.** [Catsync](https://github.com/cytracon/catsync) keeps a local folder in sync with Google Drive on Omarchy: uploads, downloads, moves, and trash (not permanent delete). It runs as a user daemon, with an optional tray.
 
-This listing is a **Quickshell bar plugin**. It does **not** ship the daemon and does **not** contain OAuth credentials. Left-click opens a panel with daemon phase and pending counts; right-click opens Catsync settings when `~/.local/bin/catsync-tray` is present.
+This listing is a **Quickshell bar plugin**. It does **not** ship the daemon and does **not** contain OAuth credentials. The **CS** button shows whether the daemon is idle or syncing and how many actions are pending; right-click opens settings. Install the app with `omarchy install catsync`.
 
 Layout follows the official Omarchy plugin template: `manifest.json`, `BarWidget.qml`, `Panel.qml`, `Model.js`.
 

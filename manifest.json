@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "author": "Cytracon",
   "license": "MIT",
-  "description": "Bar button and panel for Catsync on Omarchy: show daemon phase, pending actions, and open settings. Catsync itself is installed separately. No OAuth credentials in this plugin.",
+  "description": "Google Drive sync for Omarchy. This plugin shows daemon phase and pending actions, then opens Catsync settings. The daemon is installed separately. No OAuth credentials here.",
   "kinds": [
     "bar-widget"
   ],
@@ -15,7 +15,7 @@
   },
   "barWidget": {
     "displayName": "Catsync",
-    "description": "Open Catsync settings and show Google Drive sync status",
+    "description": "Google Drive sync: daemon status and a launch into Catsync settings",
     "category": "System",
     "aliases": [
       "catsync",
