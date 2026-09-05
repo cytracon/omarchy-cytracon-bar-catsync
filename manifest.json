@@ -15,7 +15,7 @@
   },
   "barWidget": {
     "displayName": "Catsync",
-    "description": "Google Drive sync: status, start/stop daemon, install if missing"
+    "description": "Google Drive sync: status, start/stop daemon, install if missing",
     "category": "System",
     "aliases": [
       "catsync",
