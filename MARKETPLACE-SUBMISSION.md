@@ -30,7 +30,7 @@ drive
 
 ### Maintainer notes
 
-What it is: Catsync keeps a local folder in sync with Google Drive (daemon + tray). This plugin only shows daemon phase/pending counts and opens settings. No OAuth secrets in the plugin.
+What it is: Catsync keeps a local folder in sync with Google Drive (daemon + tray). This plugin shows status, can start/stop the user daemon, and installs Catsync with `omarchy install catsync` if it is missing. No OAuth secrets in the plugin.
 
 Plugin ID: `io.github.cytracon.catsync`.
 

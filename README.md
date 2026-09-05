@@ -2,17 +2,23 @@
 
 **What it is.** [Catsync](https://github.com/cytracon/catsync) keeps a local folder in sync with Google Drive on Omarchy: uploads, downloads, moves, and trash (not permanent delete). It runs as a user daemon, with an optional tray.
 
-This listing is a **Quickshell bar plugin**. It does **not** ship the daemon and does **not** contain OAuth credentials. The **CS** button shows whether the daemon is idle or syncing and how many actions are pending; right-click opens settings. Install the app with `omarchy install catsync`.
+This plugin is the bar UI for that daemon: live phase/pending counts, **start/stop**, and settings. If Catsync is not installed yet, the panel runs `omarchy install catsync` (daemon + this plugin). OAuth stays in `~/.config/catsyncd/` on the machine.
 
 Layout follows the official Omarchy plugin template: `manifest.json`, `BarWidget.qml`, `Panel.qml`, `Model.js`.
 
 ## Install
 
+One command installs the **daemon and this plugin**:
+
+```bash
+omarchy install catsync
+```
+
+Or add the widget first, then click **Install Catsync** in the panel (same installer):
+
 ```sh
 omarchy plugin add https://github.com/cytracon/omarchy-catsync.git --enable
 ```
-
-The widget lands in the right bar section.
 
 ```sh
 omarchy bar move io.github.cytracon.catsync --section right
@@ -20,7 +26,7 @@ omarchy bar move io.github.cytracon.catsync --section right
 
 ## Usage
 
-Click **CS** to open or close the panel. Escape closes it. Right-click opens settings. In the panel: **O** settings, **S** source.
+Click **CS** to open or close the panel. Escape closes it. Right-click opens settings (or installs if missing). In the panel: **I** install, **O** settings, **D** start/stop daemon, **S** source.
 
 ## Remove
 
@@ -43,15 +49,16 @@ That writes `~/.local/bin/catsyncd`. OAuth client, token, and sync config stay i
 ## External dependencies
 
 - Omarchy Quattro shell (Quickshell). No extra QML modules.
-- Optional: Catsync at `$HOME/.local/bin/catsyncd` and `$HOME/.local/bin/catsync-tray`.
-- `omarchy-launch-browser` for the source link (ships with Omarchy).
+- Catsync at `$HOME/.local/bin/catsyncd` (installed by the panel or by `omarchy install catsync`).
+- `omarchy-launch-floating-terminal-with-presentation` and `omarchy-launch-browser` (ship with Omarchy).
 
 ## Security
 
-- No install hooks, daemons, privilege escalation, or network clients
 - No OAuth client, token, sync root, or file paths in this repository
-- Left-click only toggles the panel
-- Right-click runs the fixed path `$HOME/.local/bin/catsync-tray --settings` when that file exists
+- Left-click toggles the panel
+- Right-click opens `$HOME/.local/bin/catsync-tray --settings`, or installs Catsync if missing
+- Start/stop uses `systemctl --user` on `catsyncd.service` only
+- Install runs `omarchy install catsync` in a floating terminal
 - “Source” opens `https://github.com/cytracon/catsync` via `omarchy-launch-browser`
 
 Omarchy plugins run unsandboxed. Review `BarWidget.qml`, `Panel.qml`, and `Model.js` before enabling.

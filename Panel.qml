@@ -72,9 +72,27 @@ Panel {
   }
 
   function launchApp() {
-    if (!root.installed) return
+    if (!root.installed) {
+      installApp()
+      return
+    }
     Quickshell.execDetached([root.trayBin, "--settings"])
     root.close()
+  }
+
+  function installApp() {
+    Quickshell.execDetached([
+      "omarchy-launch-floating-terminal-with-presentation",
+      "omarchy", "install", "catsync"
+    ])
+    root.close()
+  }
+
+  function toggleDaemon() {
+    if (!root.installed) return
+    var action = root.daemonActive ? "stop" : "start"
+    Quickshell.execDetached(["systemctl", "--user", action, "catsyncd.service"])
+    Qt.callLater(root.refresh)
   }
 
   function openSource() {
@@ -83,7 +101,13 @@ Panel {
   }
 
   function activateCursor() {
+    if (!root.installed) {
+      if (actionIndex === 0) installApp()
+      else openSource()
+      return
+    }
     if (actionIndex === 0) launchApp()
+    else if (actionIndex === 1) toggleDaemon()
     else openSource()
   }
 
@@ -117,14 +141,17 @@ Panel {
       anchors.fill: parent
       onMoveRequested: function(dx, dy) {
         root.cursorActive = true
-        if (dy > 0) root.actionIndex = 1
-        else if (dy < 0) root.actionIndex = 0
+        var max = root.installed ? 2 : 1
+        if (dy > 0) root.actionIndex = Math.min(max, root.actionIndex + 1)
+        else if (dy < 0) root.actionIndex = Math.max(0, root.actionIndex - 1)
       }
       onActivateRequested: root.activateCursor()
       onCloseRequested: root.close()
       onTabRequested: function(direction) { root.switchPanel(direction) }
       onTextKey: function(t) {
         if (t === "o" || t === "O") root.launchApp()
+        else if (t === "d" || t === "D") root.toggleDaemon()
+        else if (t === "i" || t === "I") root.installApp()
         else if (t === "s" || t === "S") root.openSource()
       }
 
@@ -155,18 +182,28 @@ Panel {
 
         ActionRow {
           width: parent.width
-          title: root.installed ? "Open settings" : "Catsync is not installed"
-          hint: root.installed ? "Right-click the bar icon, or press O" : "omarchy install catsync"
+          title: root.installed ? "Open settings" : "Install Catsync"
+          hint: root.installed ? "Right-click the bar icon, or press O" : "Installs the daemon + tray. Press I"
           selected: root.cursorActive && root.actionIndex === 0
-          enabled: root.installed
+          enabled: true
           onClicked: root.launchApp()
+        }
+
+        ActionRow {
+          width: parent.width
+          visible: root.installed
+          title: root.daemonActive ? "Stop daemon" : "Start daemon"
+          hint: "systemctl --user catsyncd.service, press D"
+          selected: root.cursorActive && root.actionIndex === 1
+          enabled: root.installed
+          onClicked: root.toggleDaemon()
         }
 
         ActionRow {
           width: parent.width
           title: "Source"
           hint: "github.com/cytracon/catsync"
-          selected: root.cursorActive && root.actionIndex === 1
+          selected: root.cursorActive && root.actionIndex === (root.installed ? 2 : 1)
           enabled: true
           onClicked: root.openSource()
         }
