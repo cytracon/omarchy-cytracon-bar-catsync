@@ -149,7 +149,7 @@ Panel {
         PanelHero {
           width: parent.width
           title: "Catsync"
-          meta: root.installed ? (root.liveVersion || "0.5.0") : "Not installed in ~/.local"
+          meta: root.installed ? (root.liveVersion ? ("v" + root.liveVersion) : "installed") : "Not installed in ~/.local"
           foreground: root.foreground
           fontFamily: root.fontFamily
         }
