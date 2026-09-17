@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "io.github.cytracon.catsync",
   "name": "Catsync",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Cytracon",
   "license": "MIT",
   "description": "Google Drive sync for Omarchy. Bar status and settings. If Catsync is missing, the panel installs it. No OAuth credentials here.",

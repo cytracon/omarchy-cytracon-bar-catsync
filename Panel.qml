@@ -8,7 +8,8 @@ import "Model.js" as Model
 Panel {
   id: root
   moduleName: "io.github.cytracon.catsync"
-  manageIpc: false
+  ipcTarget: "io.github.cytracon.catsync"
+  manageIpc: (root.QsWindow.window !== null && root.QsWindow.window.screen === Quickshell.screens[0])
 
   property var anchorItem: null
   property var hostWidget: null
