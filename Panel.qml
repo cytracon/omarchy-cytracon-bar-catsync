@@ -14,7 +14,7 @@ Panel {
   property var anchorItem: null
   property var hostWidget: null
 
-  readonly property string sourceUrl: "https://github.com/cytracon/catsync"
+  readonly property string sourceUrl: "https://github.com/cytracon/omarchy-cytracon-catsync"
   readonly property string appBin: Quickshell.env("HOME") + "/.local/bin/catsyncd"
   readonly property string trayBin: Quickshell.env("HOME") + "/.local/bin/catsync-tray"
   readonly property color foreground: bar ? bar.foreground : Color.foreground
@@ -178,7 +178,7 @@ Panel {
         ActionRow {
           width: parent.width
           title: "Source"
-          hint: "github.com/cytracon/catsync"
+          hint: "github.com/cytracon/omarchy-cytracon-catsync"
           selected: root.cursorActive && root.actionIndex === 1
           enabled: true
           onClicked: root.openSource()
