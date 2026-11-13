@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import qs.Commons
+import qs.Commons as OmarchyCommons
 import qs.Ui
 import "Model.js" as Model
 
@@ -17,7 +18,7 @@ Panel {
   readonly property string sourceUrl: "https://github.com/cytracon/omarchy-cytracon-catsync"
   readonly property string appBin: Quickshell.env("HOME") + "/.local/bin/catsyncd"
   readonly property string trayBin: Quickshell.env("HOME") + "/.local/bin/catsync-tray"
-  readonly property color foreground: bar ? bar.foreground : Color.foreground
+  readonly property color foreground: bar ? bar.foreground : OmarchyCommons.Color.foreground
   readonly property color dim: Qt.darker(foreground, 1.55)
   readonly property string fontFamily: bar ? bar.fontFamily : Style.font.family
 
